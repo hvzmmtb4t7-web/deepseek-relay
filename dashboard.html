@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeepSeek Relay — Dashboard</title>
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#c9d1d9; --green:#3fb950; --blue:#58a6ff; }
+  body { margin:0; padding:24px; font-family:-apple-system,sans-serif; background:var(--bg); color:var(--text); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-bottom:24px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:20px; }
+  .card h3 { margin:0 0 8px; font-size:13px; color:#8b949e; text-transform:uppercase; letter-spacing:1px; }
+  .card .value { font-size:28px; font-weight:bold; }
+  .green { color:var(--green); } .blue { color:var(--blue); }
+  table { width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+  th,td { padding:12px 16px; text-align:left; border-bottom:1px solid var(--border); }
+  th { font-size:12px; color:#8b949e; text-transform:uppercase; }
+  button { background:var(--green); color:#000; border:none; padding:8px 16px; border-radius:6px; cursor:pointer; font-weight:bold; margin:8px 4px; }
+  button:hover { opacity:0.9; }
+  #refresh-status { font-size:12px; color:#8b949e; margin-left:8px; }
+</style>
+</head>
+<body>
+<h1>🚀 DeepSeek Relay</h1>
+<div id="refresh-status">Auto-refresh every 30s</div>
+
+<div class="grid">
+  <div class="card"><h3>Total Requests</h3><div class="value blue" id="req">—</div></div>
+  <div class="card"><h3>Input Tokens</h3><div class="value blue" id="in">—</div></div>
+  <div class="card"><h3>Output Tokens</h3><div class="value blue" id="out">—</div></div>
+  <div class="card"><h3>Est. Cost</h3><div class="value green" id="cost">—</div></div>
+</div>
+
+<button onclick="refresh()">🔄 Refresh Now</button>
+<a href="/health" target="_blank"><button style="background:var(--blue)">📊 Raw Data</button></a>
+<a href="/pricing" target="_blank"><button style="background:#6e7681">💵 Pricing</button></a>
+
+<script>
+const API = window.location.origin;
+async function refresh() {
+  try {
+    const r = await fetch(API + '/health');
+    const d = await r.json();
+    document.getElementById('req').textContent = (d.stats?.totalRequests || 0).toLocaleString();
+    document.getElementById('in').textContent = (d.stats?.totalTokensIn || 0).toLocaleString();
+    document.getElementById('out').textContent = (d.stats?.totalTokensOut || 0).toLocaleString();
+    const usage = await (await fetch(API + '/v1/usage', { headers: { Authorization: 'Bearer ' + (localStorage.getItem('key')||'') } })).json();
+    document.getElementById('cost').textContent = '$' + (usage.estimated_total_cost_usd || 0).toFixed(2);
+    document.getElementById('refresh-status').textContent = 'Last refresh: ' + new Date().toLocaleTimeString();
+  } catch(e) { console.error(e); }
+}
+refresh(); setInterval(refresh, 30000);
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "deepseek-relay",
+  "version": "1.0.0",
+  "description": "DeepSeek API relay for overseas users — OpenAI compatible",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "dotenv": "^16.4.0"
+  }
+}
