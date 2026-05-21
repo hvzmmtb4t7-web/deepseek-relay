@@ -113,7 +113,7 @@ Or use our **1-Click Deploy Pack** (see below).
 
 Don't want to figure out nginx, SSL, PM2, and firewall rules yourself?
 
-**[Get the Deploy Pack →](https://paypal.me/zj75/49)**
+**[💰 Pay $49 →](https://paypal.me/zj75/49)** &nbsp;|&nbsp; **[⬇️ Download →](https://github.com/hvzmmtb4t7-web/deepseek-relay/releases/download/v1.0/deepseek-relay-deploy-pack-v1.0.zip)**
 
 Includes:
 - 📜 Full deployment script (Ubuntu/Debian)
@@ -123,9 +123,7 @@ Includes:
 - 📧 Email alerts when balance runs low
 - 🆘 Priority GitHub issue support (3 months)
 
-**You get:** one zip file, one command, 5 minutes to production.
-
-**How it works:** Click the PayPal.Me link above → Pay $49 → Email your payment confirmation to the address shown in PayPal → You'll receive the download link within 24 hours.
+Honor system — pay what you think it's worth. If this saves you an afternoon of devops, consider buying me a coffee ☕
 
 ---
 
