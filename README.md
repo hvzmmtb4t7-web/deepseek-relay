@@ -113,7 +113,7 @@ Or use our **1-Click Deploy Pack** (see below).
 
 Don't want to figure out nginx, SSL, PM2, and firewall rules yourself?
 
-**[Get the Deploy Pack →](https://YOURNAME.gumroad.com/l/deepseek-relay)**
+**[Get the Deploy Pack →](https://paypal.me/zj75/49)**
 
 Includes:
 - 📜 Full deployment script (Ubuntu/Debian)
@@ -124,6 +124,8 @@ Includes:
 - 🆘 Priority GitHub issue support (3 months)
 
 **You get:** one zip file, one command, 5 minutes to production.
+
+**How it works:** Click the PayPal.Me link above → Pay $49 → Email your payment confirmation to the address shown in PayPal → You'll receive the download link within 24 hours.
 
 ---
 
