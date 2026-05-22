@@ -1,23 +1,26 @@
-# 🚀 DeepSeek Relay
+# 🚀 DeepSeek Relay · 自托管 API 中继站
 
-**Self-hosted DeepSeek API relay — OpenAI compatible. 10x cheaper than GPT-5.5.**
+**Self-hosted DeepSeek API relay — OpenAI compatible. 比 GPT-5.5 便宜 35 倍。**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D22-brightgreen)](https://nodejs.org)
 [![Docker](https://img.shields.io/badge/docker-ready-blue)](Dockerfile)
+[![便宜35倍](https://img.shields.io/badge/比GPT--5.5-便宜35倍-red)](https://deepseek.com)
 
 ---
 
 ## Why this exists
 
-DeepSeek V4 is one of the best AI models available — and **insanely cheap**:
+DeepSeek V4 是性价比最高的旗舰模型——能力接近 GPT-5.5/Claude Opus，价格却只有 1/35：
 
-| Model | Input ($/1M tokens) | Output ($/1M tokens) |
-|---|---|---|
-| **DeepSeek V4-Flash** | $0.14 | $0.28 |
-| DeepSeek V4-Pro | $0.44 | $0.87 |
-| Claude Opus 4.6 | $5.00 | $25.00 |
-| GPT-5.5 | $5.00 | $30.00 |
+> DeepSeek V4 is one of the best AI models available — and **insanely cheap**:
+
+| 模型 Model | 输入 Input | 输出 Output | 相对成本 vs DeepSeek |
+|---|---:|---:|---:|
+| **DeepSeek V4-Flash** | $0.14 | $0.28 | 1x（基准） |
+| DeepSeek V4-Pro | $0.44 | $0.87 | 3x |
+| Claude Sonnet 4.6 | $3.00 | $15.00 | 21x |
+| GPT-5.5 | $5.00 | $30.00 | **35x** |
 
 But if you have a team, giving everyone a DeepSeek API key is painful. This relay lets you:
 
@@ -127,6 +130,37 @@ Honor system — pay what you think it's worth. If this saves you an afternoon o
 
 ---
 
+## 🔌 接入 AI 编程工具 · Claude Code / Cursor / Cline
+
+所有支持 OpenAI 协议的 AI 编程工具都能直接使用。改 base_url 指向你的中继站即可：
+
+> All OpenAI-compatible coding tools work. Just change `base_url` to point to your relay.
+
+### Claude Code
+
+```bash
+export OPENAI_BASE_URL="http://your-server:3000/v1"
+export OPENAI_API_KEY="你的客户端Key"
+```
+
+### Cursor / Cline / Continue
+
+在设置中将 API Base URL 改为 `http://your-server:3000/v1`，API Key 填入中继站的客户端 Key。
+
+> Settings → API Base URL → `http://your-server:3000/v1`
+
+### 任意 OpenAI SDK
+
+```python
+from openai import OpenAI
+client = OpenAI(
+    base_url="http://your-server:3000/v1",
+    api_key="你的客户端Key"
+)
+```
+
+---
+
 ## FAQ
 
 **Q: Why not just use OpenRouter?**
@@ -143,6 +177,9 @@ A: You host it. Your server. Your keys. Your data never touches a third party.
 
 **Q: What if DeepSeek changes their API?**
 A: Follow this repo. We update within 24 hours of any breaking change.
+
+**Q: 多久更新一次？ / How often is it updated?**
+A: This project is actively maintained. Breaking API changes are patched within 24 hours. Feature updates are released monthly. ⭐ Star this repo to stay notified.
 
 ---
 
